@@ -61,7 +61,7 @@ public class UserController {
      */
     @GetMapping("/userdata")
     public Result userDetail(HttpServletRequest request) {
-        // 通过token故去用户账号
+        // 通过token获取用户账号
         String token = jwtTokenUtil.getNewToken(request);
         ApiAssert.notNull(token,"token不能为空");
         String userAccount = jwtTokenUtil.getUserAccountFromToken(token);
@@ -78,6 +78,7 @@ public class UserController {
         } else {
             user.setAge(null);
         }
+        // 更新设置
         userService.updateById(user);
         return Result.success(user, token);
     }
@@ -165,6 +166,7 @@ public class UserController {
         ApiAssert.isTrue(userManager.getIsManager(),"非管理员");
         // 删除用户
         userService.removeById(user.getUserId());
+        // 检测删除是否成功
         User user1 = userService.getByUserAccount(userAccount);
         ApiAssert.isNull(user1,"数据库错误");
         userService.setUserAutoIncrement();

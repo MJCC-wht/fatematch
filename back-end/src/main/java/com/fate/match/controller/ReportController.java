@@ -17,6 +17,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 举报功能的控制器
+ */
 @RestController
 public class ReportController {
 
@@ -90,13 +93,15 @@ public class ReportController {
         // 获取查询者的账号
         String token = jwtTokenUtil.getNewToken(request);
         ApiAssert.notNull(token,"token不能为空");
+        // 检测该查询者是否为管理员，非管理员不能查看
         String userAccount = jwtTokenUtil.getUserAccountFromToken(token);
         User user = userService.getByUserAccount(userAccount);
         ApiAssert.isTrue(user.getIsManager(),"非管理员");
-        // 获取所有举报关系并转换成Map
+        // 获取所有没有审核过的举报关系并转换成Map
         QueryWrapper<Feedback> wrapper = new QueryWrapper<>();
         wrapper.eq("is_check", false);
         List<Feedback> reports = feedbackMapper.selectList(wrapper);
+        // 如果没有要审核的举报就返回错误
         ApiAssert.notTrue(reports.size()==0,"没有需要审核的举报");
         return Result.success(reports, token);
     }
@@ -114,6 +119,7 @@ public class ReportController {
         String token = jwtTokenUtil.getNewToken(request);
         ApiAssert.notNull(token,"token不能为空");
         String userAccount = jwtTokenUtil.getUserAccountFromToken(token);
+        // 非管理员不能查询
         User user = userService.getByUserAccount(userAccount);
         ApiAssert.isTrue(user.getIsManager(),"非管理员");
         // 通过举报关系ID获取举报关系并返回
@@ -141,6 +147,7 @@ public class ReportController {
         String token = jwtTokenUtil.getNewToken(request);
         ApiAssert.notNull(token,"token不能为空");
         String userAccount = jwtTokenUtil.getUserAccountFromToken(token);
+        // 非管理员不能审核举报
         User user = userService.getByUserAccount(userAccount);
         ApiAssert.isTrue(user.getIsManager(),"非管理员");
         if (result) {
@@ -176,6 +183,7 @@ public class ReportController {
         String token = jwtTokenUtil.getNewToken(request);
         ApiAssert.notNull(token,"token不能为空");
         String userAccount = jwtTokenUtil.getUserAccountFromToken(token);
+        // 非管理员不能删除
         User user = userService.getByUserAccount(userAccount);
         ApiAssert.isTrue(user.getIsManager(),"非管理员");
         // 删除举报并恢复自增

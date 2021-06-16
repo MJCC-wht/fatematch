@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
+/**
+ * 关注功能的控制器
+ */
 @RestController
 public class AttentionController {
 
@@ -88,6 +91,7 @@ public class AttentionController {
         String userServerAccount = map.get("userServerAccount");
         ApiAssert.notNull(userClientAccount,"取关者账号不能为空");
         ApiAssert.notNull(userServerAccount,"被取关者账号不能为空");
+        // 获取取关者和被取关者
         User user_client = userService.getByUserAccount(userClientAccount);
         User user_server = userService.getByUserAccount(userServerAccount);
         // 查询是否存在该关注关系，如果不存在不能进行取关操作
