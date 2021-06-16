@@ -1,0 +1,77 @@
+{
+  "groups": [
+    {
+      "name": "jwt",
+      "type": "com.fate.match.config.JwtConfig",
+      "sourceType": "com.fate.match.config.JwtConfig"
+    },
+    {
+      "name": "site",
+      "type": "com.fate.match.config.SiteConfig",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jwt.allow-exp",
+      "type": "java.lang.Long",
+      "sourceType": "com.fate.match.config.JwtConfig"
+    },
+    {
+      "name": "jwt.expiration",
+      "type": "java.lang.Long",
+      "sourceType": "com.fate.match.config.JwtConfig"
+    },
+    {
+      "name": "jwt.header",
+      "type": "java.lang.String",
+      "sourceType": "com.fate.match.config.JwtConfig"
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.fate.match.config.JwtConfig"
+    },
+    {
+      "name": "jwt.token-head",
+      "type": "java.lang.String",
+      "sourceType": "com.fate.match.config.JwtConfig"
+    },
+    {
+      "name": "site.admin",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    },
+    {
+      "name": "site.ban",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    },
+    {
+      "name": "site.cors-domain",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    },
+    {
+      "name": "site.create-comment-score",
+      "type": "java.lang.Integer",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    },
+    {
+      "name": "site.create-topic-score",
+      "type": "java.lang.Integer",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    },
+    {
+      "name": "site.good-topic-score",
+      "type": "java.lang.Integer",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    },
+    {
+      "name": "site.page-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.fate.match.config.SiteConfig"
+    }
+  ],
+  "hints": []
+}
